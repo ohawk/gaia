@@ -333,6 +333,26 @@ class GaiaData(object):
             return [filename for filename in files if filename.endswith(extension)]
         return files
 
+#7awk_start_20131028
+'''
+addition like below
+def is_cell_data_connected(self):
+        return self.marionette.execute_script("return window.navigator.mozMobileConnection.data.connected;")
+
+Actual command below
+self.marionette.execute_script("SpecialPowers.getBoolPref('privacy.donottrackheader.value');", special_powers=True)
+'''
+#get_pref_privacy_donottrackheader_enabled 
+    def get_pref_privacy_donottrackheader_enabled(self):
+        return self.marionette.execute_script('privacy.donottrackheader.enabled')
+
+#get_pref_privacy_donottrackheader_value
+    def get_pref_privacy_donottrackheader_value(self):
+        return self.marionette.execute_script("SpecialPowers.getBoolPref('privacy.donottrackheader.value');", special_powers=True)
+
+
+#7awk1_end_20131028
+
 
 class GaiaDevice(object):
 
